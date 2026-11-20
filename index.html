@@ -1,146 +1,193 @@
 <!DOCTYPE html>
 <html lang="tr">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Kage.YK</title>
 <style>
 *{margin:0;padding:0;box-sizing:border-box;font-family:Arial,sans-serif}
-body{background:#090909;color:#fff;overflow-x:hidden}
+body{background:#090909;color:#fff}
 header{position:sticky;top:0;z-index:20;background:#090909;border-bottom:1px solid #222;display:flex;align-items:center;justify-content:space-between;padding:12px 14px}
 .left{display:flex;align-items:center;gap:12px}
 .burger{width:38px;height:38px;background:#141414;border:1px solid #2a2a2a;border-radius:10px;cursor:pointer;display:flex;flex-direction:column;justify-content:center;align-items:center;gap:5px}
-.burger span{display:block;width:18px;height:2px;background:#fff;border-radius:2px}
-.burger span:nth-child(2){background:#E32636;width:14px;margin-left:-4px}
-.logo{font-size:22px;font-weight:900;letter-spacing:1px}.logo em{color:#E32636;font-style:normal}
-.right{display:flex;gap:8px}
-.iconBtn{background:#141414;border:1px solid #2a2a2a;color:#ccc;padding:8px 10px;border-radius:10px;cursor:pointer;font-size:13px}
-.overlay{position:fixed;inset:0;background:rgba(0,0,0,.7);z-index:30;display:none}
-.overlay.show{display:block}
-.sidebar{position:fixed;left:-300px;top:0;bottom:0;width:280px;background:#0f0f0f;border-right:1px solid #E32636;z-index:40;transition:.3s;padding:16px;overflow-y:auto}
-.sidebar.open{left:0}
-.sideTop{display:flex;justify-content:space-between;align-items:center;margin-bottom:16px}
-.sideTop b{font-size:20px}.sideTop b i{color:#E32636;font-style:normal}
-.closeBtn{background:#1c1c1c;border:1px solid #333;color:#fff;width:32px;height:32px;border-radius:8px;cursor:pointer}
-.menuBtn{width:100%;text-align:left;background:#141414;border:1px solid #232323;color:#ddd;padding:12px 12px;border-radius:12px;margin-bottom:8px;cursor:pointer;display:flex;justify-content:space-between;align-items:center}
-.menuBtn.active{background:#E32636;border-color:#E32636;color:#fff}
-.menuBtn small{color:#888}.menuBtn.active small{color:#fff}
+.burger span{display:block;width:18px;height:2px;background:#fff}.burger span:nth-child(2){background:#E32636;width:14px;margin-left:-4px}
+.logo{font-size:22px;font-weight:900;letter-spacing:3px}.logo em{color:#E32636;font-style:normal}
+.iconBtn{background:#141414;border:1px solid #2a2a2a;color:#ccc;padding:8px 10px;border-radius:10px;cursor:pointer}
+.overlay{position:fixed;inset:0;background:rgba(0,0,0,.7);z-index:30;display:none}.overlay.show{display:block}
+.sidebar{position:fixed;left:-300px;top:0;bottom:0;width:280px;background:#0f0f0f;border-right:1px solid #E32636;z-index:40;transition:.3s;padding:16px;overflow-y:auto}.sidebar.open{left:0}
+.menuBtn{width:100%;text-align:left;background:#141414;border:1px solid #232323;color:#ddd;padding:12px;border-radius:12px;margin-bottom:8px;cursor:pointer;display:flex;justify-content:space-between}.menuBtn.active{background:#E32636;color:#fff}
 .page{display:none;padding:0 14px 40px}.page.active{display:block}
-.hero{margin:16px 0 14px;background:linear-gradient(135deg,#140407,#090909 60%);border:1px solid #2a2a2a;border-radius:20px;padding:20px;position:relative;overflow:hidden}
+.kageonHead{display:flex;justify-content:space-between;align-items:center;padding:18px 2px 12px}
+.kageonHead b{font-size:28px;letter-spacing:5px;font-weight:900}.kageonHead b i{color:#E32636;font-style:normal}
+.kageonHead small{color:#888;letter-spacing:3px}
+.searchBox{display:flex;align-items:center;gap:10px;background:#0a0a0a;border:1px solid #2a2a2a;border-radius:8px;padding:14px}
+.searchBox input{background:transparent;border:none;outline:none;color:#fff;width:100%;font-size:16px}
+.searchBox span{color:#E32636}
+.catRow{display:flex;gap:10px;overflow-x:auto;margin-top:14px;padding-bottom:4px}
+.catBtn{background:#0a0a0a;border:1px solid #2a2a2a;color:#888;padding:11px 18px;border-radius:6px;white-space:nowrap;cursor:pointer}
+.catBtn.active{background:#2a0a0d;border:1px solid #E32636;color:#fff;box-shadow:0 0 12px rgba(227,38,54,.5)}
+.secHead{display:flex;justify-content:space-between;margin:22px 2px 10px;color:#888;letter-spacing:2px;font-size:13px}.secHead b{color:#E32636}
+.empty{text-align:center;padding:30px 0}.empty .kanji{font-size:44px;color:#E32636;font-weight:900}.empty p{color:#888;margin-top:10px}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.product{background:#111;border:1px solid #232323;border-radius:12px;padding:12px}
+.product .img{height:80px;background:#1a1a1a;border-radius:8px;display:flex;align-items:center;justify-content:center}
+.product b{font-size:13px;display:block;margin-top:8px}.price{color:#E32636;font-weight:800;margin-top:6px}
+.hero{margin:14px 0;background:linear-gradient(135deg,#140407,#090909 60%);border:1px solid #2a2a2a;border-radius:20px;padding:20px;position:relative;overflow:hidden}
 .hero .kanji{position:absolute;right:10px;top:0;font-size:110px;color:rgba(227,38,54,.12);font-weight:900}
-.hero h1{font-size:36px;line-height:1.05;letter-spacing:-1px}.hero h1 span{color:#E32636}
-.hero p{color:#9a9a9a;margin:10px 0 14px;line-height:1.5;font-size:14px}
-.search{background:#090909;border:1px solid #2a2a2a;border-radius:12px;padding:12px;color:#aaa;display:flex;gap:8px}
-.search input{background:transparent;border:none;outline:none;color:#fff;width:100%}
-.stats{display:flex;gap:10px;margin-top:14px}.stat{flex:1;background:#090909;border:1px solid #232323;border-radius:14px;padding:12px;text-align:center}.stat b{font-size:18px;color:#E32636}.stat small{color:#888;display:block;margin-top:4px}
+.hero h1{font-size:36px;line-height:1.05}.hero h1 span{color:#E32636}
+.hero p{color:#9a9a9a;margin:10px 0}
 .card{background:#0f0f0f;border:1px solid #232323;border-radius:18px;padding:16px;margin-top:14px}
-.card h3{font-size:17px}.card p{color:#888;font-size:13px;margin-top:6px;line-height:1.5}
 .btn{background:#E32636;color:#fff;border:none;padding:13px;border-radius:12px;font-weight:800;cursor:pointer;width:100%;margin-top:12px}
 .btn2{background:#1a1a1a;color:#fff;border:1px solid #333;padding:11px;border-radius:11px;cursor:pointer;flex:1}
 .row{display:flex;gap:8px;margin-top:12px}
-.grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:12px}
-.product{background:#141414;border:1px solid #2a2a2a;border-radius:14px;padding:12px}
-.product .img{height:72px;background:#1c1c1c;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:32px}
-.product b{font-size:13px;display:block;margin-top:8px}.product small{color:#888}.price{color:#E32636;font-weight:800;margin-top:6px}
 .profileTop{display:flex;gap:14px;align-items:center}
-.avatar{width:84px;height:84px;border-radius:50%;background:#1c1c1c;display:flex;align-items:center;justify-content:center;font-size:36px;flex-shrink:0}
-.frame-alev{border:3px solid #ff4d00;box-shadow:0 0 22px #E32636;animation:alev .8s infinite alternate}
-@keyframes alev{from{box-shadow:0 0 10px #ff4d00}to{box-shadow:0 0 30px #ffcc00,0 0 40px #E32636}}
-.frame-yildirim{border:3px solid #00d4ff;box-shadow:0 0 20px #00d4ff;animation:yil .5s infinite alternate}
-@keyframes yil{from{box-shadow:0 0 8px #00d4ff}to{box-shadow:0 0 28px #fff}}
-.frame-su{border:3px solid #2e9bff;box-shadow:0 0 18px #2e9bff}
-.badge{display:inline-block;background:#1c1c1c;border:1px solid #E32636;padding:6px 9px;border-radius:20px;font-size:11px;margin:4px 4px 0 0}
+.avatar{width:84px;height:84px;border-radius:50%;background:#1c1c1c;display:flex;align-items:center;justify-content:center;font-size:36px;flex-shrink:0;border:3px solid #E32636;box-shadow:0 0 22px #E32636}
+.profileBtn{background:#E32636;color:#fff;border:none;padding:7px 12px;border-radius:6px;font-weight:800;cursor:pointer;margin-top:8px;font-size:12px}
+.bioBox{display:flex;justify-content:space-between;align-items:center;background:#111;border:1px solid #232323;border-radius:10px;padding:14px;margin-top:16px}
+.bioBox a{color:#E32636;text-decoration:none;font-size:13px}
+.tabRow{display:flex;gap:10px;margin-top:16px;overflow-x:auto}
+.tabBtn{background:#111;border:1px solid #232323;color:#888;padding:10px 18px;border-radius:8px;cursor:pointer;white-space:nowrap}
+.tabBtn.active{border-color:#E32636;color:#fff;background:#1a0507}
+.postBox{background:#111;border:1px solid #232323;border-radius:14px;padding:14px;margin-top:14px}
+.postBox textarea{width:100%;background:#0a0a0a;border:1px solid #232323;border-radius:10px;color:#fff;padding:14px;min-height:70px;outline:none;resize:none}
+.badgeGrid{display:grid;grid-template-columns:1fr;gap:10px;margin-top:12px}
+.badgeCard{background:#111;border:1px solid #2a2a2a;border-radius:14px;padding:14px;position:relative;overflow:hidden}
+.badgeCard h4{font-size:15px}
+.badgeCard p{color:#888;font-size:12px;margin-top:6px;line-height:1.5}
+.badgeText{display:inline-block;font-weight:900;font-size:16px;letter-spacing:1px;background:linear-gradient(90deg,#fff,#E32636,#ffcc00,#E32636,#fff);background-size:300% 100%;-webkit-background-clip:text;-webkit-text-fill-color:transparent;animation:shine 2.5s linear infinite}
+@keyframes shine{0%{background-position:0% 0}100%{background-position:300% 0}}
+.badgeMock{border-left:3px solid #E32636}
+.badgeRom{border-left:3px solid #ff4d6d}
+.badgeTag{font-size:10px;background:#E32636;color:#fff;padding:3px 7px;border-radius:20px;letter-spacing:1px}
+.badgeTag2{font-size:10px;background:#222;color:#aaa;padding:3px 7px;border-radius:20px;border:1px solid #333}
 .gameScore{font-size:48px;color:#E32636;font-weight:900;text-align:center}
 .coin{width:118px;height:118px;border-radius:50%;background:radial-gradient(circle,#ff5a6a,#E32636);border:none;font-size:48px;cursor:pointer;display:block;margin:14px auto;box-shadow:0 0 30px #E32636}
-#bg{position:fixed;inset:0;z-index:-1;opacity:.6}
-.secTitle{margin:18px 0 0;font-size:15px;color:#ccc}
+#bg{position:fixed;inset:0;z-index:-1;opacity:.5}
+.svgIcon{width:28px;height:28px;vertical-align:middle}
 </style>
 </head>
 <body>
 <canvas id="bg"></canvas>
-<header>
-<div class="left"><button class="burger" onclick="toggleMenu()"><span></span><span></span><span></span></button><div class="logo">Kage<em>.YK</em></div></div>
-<div class="right"><button class="iconBtn" onclick="toggleBg()" id="bgBtn">Animasyon: Açık</button><button class="iconBtn">🔔</button></div>
-</header>
-
+<header><div class="left"><button class="burger" onclick="toggleMenu()"><span></span><span></span><span></span></button><div class="logo">Kage<em>.YK</em></div></div><div><button class="iconBtn" onclick="toggleBg()" id="bgBtn">Animasyon: Açık</button> <button class="iconBtn">🔔</button></div></header>
 <div class="overlay" id="overlay" onclick="toggleMenu()"></div>
 <div class="sidebar" id="sidebar">
-<div class="sideTop"><b>Kage<i>.YK</i></b><button class="closeBtn" onclick="toggleMenu()">✕</button></div>
-<p style="color:#888;font-size:12px;margin-bottom:12px">影 • Gölgeden Güce</p>
-<button class="menuBtn active" onclick="showPage('home',this)">🏠 Ana Sayfa <small>›</small></button>
-<button class="menuBtn" onclick="showPage('shops',this)">🛍️ Kage Shops <small>›</small></button>
-<button class="menuBtn" onclick="showPage('game',this)">🎮 Oyun <small>›</small></button>
-<button class="menuBtn" onclick="showPage('profile',this)">👤 Profil <small>›</small></button>
-<button class="menuBtn" onclick="showPage('badges',this)">🏅 Rozetler <small>›</small></button>
-<button class="menuBtn" onclick="showPage('ai',this)">🤖 Yapay Zekâ <small>›</small></button>
-<button class="menuBtn" onclick="showPage('projects',this)">📁 Projeler <small>›</small></button>
-<button class="menuBtn" onclick="showPage('premium',this)">👑 Premium <small>›</small></button>
-<button class="menuBtn" onclick="showPage('analysis',this)">📊 Analiz <small>›</small></button>
-<button class="menuBtn" onclick="showPage('transport',this)">✈️ Ulaşım <small>›</small></button>
-<button class="menuBtn" onclick="showPage('stock',this)">📈 Borsa <small>›</small></button>
-<button class="menuBtn" onclick="showPage('settings',this)">⚙️ Ayarlar <small>›</small></button>
-<div style="background:#141414;border:1px solid #232323;border-radius:12px;padding:12px;margin-top:12px"><small style="color:#888">Kage Points</small><br><b style="color:#E32636;font-size:20px">1.250</b> <small>puan</small><br><button class="btn" style="padding:10px;margin-top:10px" onclick="alert('Puan yükleme 2. aşamada')">Puan Yükle</button></div>
+<div style="display:flex;justify-content:space-between"><b style="font-size:20px;letter-spacing:2px">Kage<i style="color:#E32636;font-style:normal">.YK</i></b><button class="iconBtn" onclick="toggleMenu()">✕</button></div>
+<p style="color:#888;font-size:12px;margin:10px 0">影 • Gölgeden Güce</p>
+<button class="menuBtn active" onclick="showPage('home',this)">Ana Sayfa <span>›</span></button>
+<button class="menuBtn" onclick="showPage('shops',this)">Kage Shops <span>›</span></button>
+<button class="menuBtn" onclick="showPage('game',this)">Oyun <span>›</span></button>
+<button class="menuBtn" onclick="showPage('profile',this)">Profil <span>›</span></button>
+<button class="menuBtn" onclick="showPage('badges',this)">Rozetler <span>›</span></button>
+<button class="menuBtn" onclick="showPage('premium',this)">Premium <span>›</span></button>
+<button class="menuBtn" onclick="showPage('transport',this)">Ulaşım <span>›</span></button>
+<button class="menuBtn" onclick="showPage('stock',this)">Borsa <span>›</span></button>
+<button class="menuBtn" onclick="showPage('settings',this)">Ayarlar <span>›</span></button>
 </div>
 
-<!-- ANA SAYFA -->
 <div class="page active" id="page-home">
-<div class="hero"><div class="kanji">影</div><p style="color:#E32636;font-size:12px;letter-spacing:2px">KAGE.YK • DİJİTAL EKOSİSTEM</p><h1>KAGE.<br><span>YK</span></h1><p>Gölgede kalma. Üret, sat, oyna, rozet kazan. Hepsi tek karanlık evrende.</p>
-<div class="search">🔍 <input placeholder="Ürün, rozet, proje, kullanıcı ara..."></div>
-<div class="stats"><div class="stat"><b>1.250</b><small>Kage Points</small></div><div class="stat"><b>12</b><small>Rozet</small></div><div class="stat"><b>348</b><small>Takipçi</small></div></div>
-</div>
-<h3 class="secTitle">Öne Çıkanlar</h3>
-<div class="card"><h3>🛍️ Kage Shops</h3><p>Bugün en çok satan animasyonlu rozetler ve çerçeveler.</p><button class="btn" onclick="showPage('shops',null)">Mağazaya Git →</button></div>
-<div class="card"><h3>🎮 Kage Oyunu</h3><p>30 saniyede ne kadar toplayabilirsin? Skorun rozete dönüşür.</p><button class="btn" onclick="showPage('game',null)">Oyuna Git →</button></div>
-<div class="card"><h3>🤖 Yapay Zekâ</h3><p>Kod, site, proje fikri. Sor, üret, yayınla.</p><button class="btn" onclick="showPage('ai',null)">Yapay Zekâya Git →</button></div>
+<div class="hero"><div class="kanji">影</div><p style="color:#E32636;font-size:12px;letter-spacing:2px">KAGE.YK • DİJİTAL EKOSİSTEM</p><h1>KAGE.<br><span>YK</span></h1><p>Gölgede kalma. Üret, sat, oyna, rozet kazan.</p>
+<div class="searchBox"><span>⌕</span><input placeholder="Ürün, rozet, proje ara..."></div></div>
+<div class="card"><h3>Kage Shops</h3><p>KAGEON MARKET tarzı. Bugün en çok satanlar.</p><button class="btn" onclick="showPage('shops',null)">Mağazaya Git →</button></div>
+<div class="card"><h3>Oyun</h3><p>30 saniyede ne kadar toplarsın?</p><button class="btn" onclick="showPage('game',null)">Oyuna Git →</button></div>
+<div class="card"><h3>Rozetler</h3><p>Alaycı, romantik, duygusal. Hepsi yazılı animasyonlu.</p><button class="btn" onclick="showPage('badges',null)">Rozetlere Git →</button></div>
 </div>
 
-<!-- SHOPS AYRI -->
 <div class="page" id="page-shops">
-<h2 style="margin-top:16px">🛍️ Kage Shops</h2><p style="color:#888;margin-top:6px">Herkes satar, herkes alır. Burası sadece mağaza.</p>
-<div class="grid">
-<div class="product"><div class="img">🔥</div><b>Alevli Rozet</b><br><small>Animasyonlu • Sınırlı</small><div class="price">50 Puan</div></div>
-<div class="product"><div class="img">⚡</div><b>Yıldırım Çerçeve</b><br><small>Profil Çerçevesi</small><div class="price">30 Puan</div></div>
-<div class="product"><div class="img">💧</div><b>Su Efekti</b><br><small>Profil Efekti</small><div class="price">40 Puan</div></div>
-<div class="product"><div class="img">👑</div><b>KAGE Rozeti</b><br><small>Özel • Gizli</small><div class="price">120 Puan</div></div>
+<div class="kageonHead"><b>KAGE<i>ON</i></b><small>市場 • MARKET</small></div>
+<div class="searchBox"><span>⌕</span><input id="shopSearch" placeholder="Ürün ara..." oninput="filterShop()"></div>
+<div class="catRow" id="cat1">
+<button class="catBtn active" onclick="setCat('Tümü',this)">Tümü</button><button class="catBtn" onclick="setCat('Moda',this)">Moda</button><button class="catBtn" onclick="setCat('Elektronik',this)">Elektronik</button><button class="catBtn" onclick="setCat('Oyun',this)">Oyun</button>
 </div>
-<button class="btn" onclick="alert('Satın alma sistemi 2. aşamada')">Sepete Ekle Mantığı Yakında</button>
+<div class="catRow">
+<button class="catBtn active">Tümü</button><button class="catBtn">Erkek Giyim</button><button class="catBtn">Kadın Giyim</button><button class="catBtn">Çocuk</button>
 </div>
-
-<!-- OYUN AYRI -->
-<div class="page" id="page-game">
-<h2 style="margin-top:16px">🎮 Oyun Yeri</h2><p style="color:#888;margin-top:6px">Burası sadece oyun. Başka bir şey yok, kafa karışmasın.</p>
-<div class="card" style="text-align:center"><div class="gameScore" id="score">0</div><small style="color:#888">Skor • En İyi: <span id="best">0</span> • Süre: <span id="time">30</span></small><button class="coin" onclick="clickCoin()">🪙</button><button class="btn2" onclick="startGame()" style="width:100%">Oyunu Başlat</button></div>
+<div class="secHead"><span>SEÇKİ</span><b id="count">4 ÜRÜN</b></div>
+<div class="grid" id="shopGrid"></div>
+<div class="empty" id="emptyShop" style="display:none"><div class="kanji">無</div><p>Henüz ürün eklenmedi.</p></div>
+<p style="color:#666;font-size:11px;text-align:center;margin-top:20px;line-height:1.6">Bu sayfadaki bağlantılar satış ortaklığı linkleridir. © KAGEON<br>DİJİTAL BİR EKOSİSTEM</p>
 </div>
 
-<!-- PROFIL AYRI -->
 <div class="page" id="page-profile">
-<h2 style="margin-top:16px">Profil</h2>
-<div class="card"><div class="profileTop"><div class="avatar frame-alev" id="avatar">🦊</div><div><b style="font-size:18px">Rinkyota</b><br><small style="color:#888">@rinkyota • Kage.YK Kurucusu</small><br><span class="badge">🔥 Kurucu</span><span class="badge">⚡ KAGE</span></div></div>
-<p style="margin-top:14px;color:#aaa;font-size:13px">Çerçeve Seç:</p><div class="row"><button class="btn2" onclick="setFrame('frame-alev')">🔥 Alevli</button><button class="btn2" onclick="setFrame('frame-yildirim')">⚡ Yıldırımlı</button><button class="btn2" onclick="setFrame('frame-su')">💧 Sulu</button></div></div>
+<div class="kageonHead"><b>KAGE<i>ON</i></b><small>個人 • PROFİL</small></div>
+<div class="card" style="margin-top:0">
+<div class="profileTop"><div class="avatar" id="avatar">🦊</div><div><b style="font-size:22px">Kurucu YK</b><br><small style="color:#888">Kayıt Sırası: #01 / 50 (YK Family)</small><br><button class="profileBtn" onclick="alert('Fotoğraf değiştirme yakında')">DEĞİŞTİR</button></div></div>
+<div class="bioBox"><span>KAGEON Dijital Ekosistem Kurucusu.</span><a href="#" onclick="return false">Düzenle</a></div>
+<div style="display:flex;gap:18px;margin-top:14px;color:#888;font-size:13px"><span><b style="color:#fff">1.250</b> Puan</span><span><b style="color:#fff">32</b> Rozet</span><span><b style="color:#fff">348</b> Takipçi</span></div>
+<div class="tabRow"><button class="tabBtn active" onclick="setTab(this,'Tümü')">Tümü</button><button class="tabBtn" onclick="setTab(this,'Fotoğraf')">Fotoğraf</button><button class="tabBtn" onclick="setTab(this,'Yazı')">Yazı</button><button class="tabBtn" onclick="setTab(this,'Analiz')">Analiz</button></div>
+<div class="postBox"><textarea placeholder="Düşüncelerini veya projeni paylaş..."></textarea><button class="btn" onclick="alert('Gönderi paylaşıldı!')">Paylaş</button></div>
+<div id="tabContent" style="margin-top:14px;color:#888;font-size:13px">Tümü sekmesi: gönderilerin burada görünecek.</div>
+<p style="margin-top:14px">Çerçeve:</p><div class="row"><button class="btn2" onclick="setFrame('alev')">Alevli Çerçeve</button><button class="btn2" onclick="setFrame('yildirim')">Yıldırımlı</button><button class="btn2" onclick="setFrame('su')">Sulu</button></div>
+</div>
 </div>
 
-<div class="page" id="page-badges"><h2 style="margin-top:16px">🏅 Rozetler</h2><div class="card"><span class="badge">🔥 Kurucu</span><span class="badge">⚡ KAGE</span><span class="badge">💖 Romantik</span><span class="badge">⚔️ Savaşçı</span><span class="badge">😂 Mizahi</span><span class="badge">👑 Premium</span><p>33 sınırı yok. Sınırsız.</p></div></div>
-<div class="page" id="page-ai"><h2 style="margin-top:16px">🤖 Yapay Zekâ</h2><div class="card"><p>Buraya AI sohbet gelecek. Şimdilik ana sayfa hazır, AI 3. aşamada.</p></div></div>
-<div class="page" id="page-projects"><h2 style="margin-top:16px">📁 Projeler</h2><div class="card"><p>Projelerin burada sergilenecek.</p></div></div>
-<div class="page" id="page-premium"><h2 style="margin-top:16px">👑 Premium</h2><div class="card"><p>GIF oluşturma, özel efektler, gelişmiş analiz.</p><button class="btn">Premium'u İncele</button></div></div>
-<div class="page" id="page-analysis"><h2 style="margin-top:16px">📊 Analiz</h2><div class="card"><p>Profil görüntülenme, rozet ilerlemesi, satış.</p></div></div>
-<div class="page" id="page-transport"><h2 style="margin-top:16px">✈️ Ulaşım</h2><div class="card"><p>Uçak bileti karşılaştırma + gerçek harita navigasyonu buraya gelecek.</p></div></div>
-<div class="page" id="page-stock"><h2 style="margin-top:16px">📈 Borsa</h2><div class="card"><p>Hisse ve kripto takibi buraya gelecek.</p></div></div>
-<div class="page" id="page-settings"><h2 style="margin-top:16px">⚙️ Ayarlar</h2><div class="card"><p>Animasyon açma kapama, dil, profil.</p><button class="btn" onclick="toggleBg()">Animasyonu Aç / Kapat</button></div></div>
+<div class="page" id="page-badges">
+<h2 style="margin-top:16px">Rozetler</h2><p style="color:#888;margin-top:6px">Emoji yok. Hepsi yazılı, animasyonlu. Üstüne bas, detayını gör.</p>
+<div class="catRow"><button class="catBtn active" onclick="filterBadge('all',this)">Tümü</button><button class="catBtn" onclick="filterBadge('alayci',this)">Alaycı</button><button class="catBtn" onclick="filterBadge('romantik',this)">Romantik</button><button class="catBtn" onclick="filterBadge('duygusal',this)">Duygusal</button></div>
+<div class="badgeGrid" id="badgeGrid"></div>
+</div>
+
+<div class="page" id="page-game"><h2 style="margin-top:16px">Oyun Yeri</h2><div class="card" style="text-align:center"><div class="gameScore" id="score">0</div><small style="color:#888">En İyi: <span id="best">0</span> • Süre: <span id="time">30</span></small><button class="coin" onclick="clickCoin()">◉</button><button class="btn2" onclick="startGame()" style="width:100%">Oyunu Başlat</button></div></div>
+
+<div class="page" id="page-transport">
+<h2 style="margin-top:16px">Ulaşım</h2>
+<div class="card"><div style="display:flex;gap:10px;align-items:center"><svg class="svgIcon" viewBox="0 0 24 24" fill="#E32636"><path d="M2.5 12.5 L21 2 L17.5 21 L11 14.5 L2.5 12.5 Z"/><path d="M11 14.5 L21 2" stroke="#090909" stroke-width="1"/></svg><b>Modern Jet • Uçak Bileti</b></div><p>Eski klasik uçak emojisi gitti. Bu bizim çizdiğimiz modern jet. Fiyat karşılaştırma buraya gelecek.</p><div class="row"><button class="btn2">İstanbul</button><button class="btn2">Tokyo</button></div><button class="btn">Bilet Ara</button></div>
+</div>
+
+<div class="page" id="page-stock"><h2 style="margin-top:16px">Borsa</h2><div class="card"><p>Hisse ve kripto takibi. Alaycı rozetler burada kazanılır.</p></div></div>
+<div class="page" id="page-premium"><h2 style="margin-top:16px">Premium</h2><div class="card"><p>GIF, özel efekt, gelişmiş analiz.</p><button class="btn">Premium'u İncele</button></div></div>
+<div class="page" id="page-settings"><h2 style="margin-top:16px">Ayarlar</h2><div class="card"><button class="btn" onclick="toggleBg()">Animasyonu Aç / Kapat</button></div></div>
 
 <script>
 let bgOn=true;const c=document.getElementById('bg');const ctx=c.getContext('2d');
 function resize(){c.width=innerWidth;c.height=innerHeight}resize();addEventListener('resize',resize);
-let parts=Array.from({length:50},()=>({x:Math.random()*innerWidth,y:Math.random()*innerHeight,s:Math.random()*2+1,v:Math.random()*.5+.2}));
+let parts=Array.from({length:45},()=>({x:Math.random()*innerWidth,y:Math.random()*innerHeight,s:Math.random()*2+1,v:Math.random()*.5+.2}));
 function draw(){ctx.clearRect(0,0,c.width,c.height);if(!bgOn)return;ctx.fillStyle='#E32636';parts.forEach(p=>{p.y-=p.v;if(p.y<0)p.y=innerHeight;ctx.beginPath();ctx.arc(p.x,p.y,p.s,0,Math.PI*2);ctx.fill()});requestAnimationFrame(draw)}draw();
 function toggleBg(){bgOn=!bgOn;document.getElementById('bgBtn').innerText=bgOn?'Animasyon: Açık':'Animasyon: Kapalı';if(bgOn)draw();else ctx.clearRect(0,0,c.width,c.height)}
 function toggleMenu(){document.getElementById('sidebar').classList.toggle('open');document.getElementById('overlay').classList.toggle('show')}
-function showPage(id,el){document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));document.getElementById('page-'+id).classList.add('active');if(el){document.querySelectorAll('.menuBtn').forEach(b=>b.classList.remove('active'));el.classList.add('active')}document.getElementById('sidebar').classList.remove('open');document.getElementById('overlay').classList.remove('show');window.scrollTo({top:0,behavior:'smooth'})}
-function setFrame(cls){document.getElementById('avatar').className='avatar '+cls}
-let score=0,best=localStorage.getItem('kageBest')||0,timer=null,timeLeft=30,playing=false;
-document.getElementById('best').innerText=best;
-function startGame(){score=0;timeLeft=30;playing=true;document.getElementById('score').innerText=0;clearInterval(timer);timer=setInterval(()=>{timeLeft--;document.getElementById('time').innerText=timeLeft;if(timeLeft<=0){clearInterval(timer);playing=false;if(score>best){best=score;localStorage.setItem('kageBest',best);document.getElementById('best').innerText=best}alert('Süre bitti! Skorun: '+score)}},1000)}
-function clickCoin(){if(!playing){alert('Önce Oyunu Başlat');return}score+=5;document.getElementById('score').innerText=score}
-</script>
-</body>
-  </html>
+function showPage(id,el){document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));document.getElementById('page-'+id).classList.add('active');if(el){document.querySelectorAll('.menuBtn').forEach(b=>b.classList.remove('active'));el.classList.add('active')}document.getElementById('sidebar').classList.remove('open');document.getElementById('overlay').classList.remove('show');window.scrollTo({top:0})}
+function setFrame(t){let a=document.getElementById('avatar');if(t=='alev'){a.style.borderColor='#ff4d00';a.style.boxShadow='0 0 22px #E32636'}if(t=='yildirim'){a.style.borderColor='#00d4ff';a.style.boxShadow='0 0 22px #00d4ff'}if(t=='su'){a.style.borderColor='#2e9bff';a.style.boxShadow='0 0 22px #2e9bff'}}
+function setTab(el,name){document.querySelectorAll('.tabBtn').forEach(b=>b.classList.remove('active'));el.classList.add('active');document.getElementById('tabContent').innerText=name+' sekmesi: içerikler burada görünecek.'}
+let products=[
+{name:'Alevli Rozet',cat:'Moda',price:'50 Puan',icon:'◉',desc:'Animasyonlu • Sınırlı'},
+{name:'Yıldırım Çerçeve',cat:'Moda',price:'30 Puan',icon:'⚡',desc:'Profil Çerçevesi'},
+{name:'KAGE Kulaklık',cat:'Elektronik',price:'1.250 Puan',icon:'🎧',desc:'Kablosuz'},
+{name:'Kage Oyuncu Kolu',cat:'Oyun',price:'900 Puan',icon:'🎮',desc:'2D / 3D Uyumlu'}
+];
+let curCat='Tümü';
+function renderShop(){let q=document.getElementById('shopSearch').value.toLowerCase();let list=products.filter(p=>(curCat=='Tümü'||p.cat==curCat)&&p.name.toLowerCase().includes(q));let grid=document.getElementById('shopGrid');grid.innerHTML='';document.getElementById('count').innerText=list.length+' ÜRÜN';document.getElementById('emptyShop').style.display=list.length?'none':'block';list.forEach(p=>{grid.innerHTML+='<div class="product"><div class="img" style="font-size:34px">'+p.icon+'</div><b>'+p.name+'</b><br><small style="color:#888">'+p.desc+'</small><div class="price">'+p.price+'</div></div>'})}
+function setCat(cat,el){curCat=cat;document.querySelectorAll('#cat1 .catBtn').forEach(b=>b.classList.remove('active'));el.classList.add('active');renderShop()}
+function filterShop(){renderShop()}renderShop();
+let badges=[
+{t:'Tepeden Alan',c:'alayci',d:'Grafikte en tepeden alıp anında terste kalanlara. Sistem grafiği izler, tepeden alımı görünce verir.'},
+{t:'Sepet Koleksiyoneri',c:'alayci',d:'Sepete 50 ürün ekleyip 1 tanesini bile almayanlara.'},
+{t:'Pazarlıkçı Mezarcı',c:'alayci',d:'Satıcıya fiyatın onda birini teklif edenlere.'},
+{t:'Kırmızı Mum Aşığı',c:'alayci',d:'Portföyü sürekli zararda olup uzun vadeciyim diye avunanlara.'},
+{t:'Platonik Hayalet',c:'alayci',d:'Profilleri gizlice gezip tek beğeni bile atmayanlara.'},
+{t:'Kopyala-Yapıştır Romantik',c:'alayci',d:'Herkese aynı hazır mesajı atanlara.'},
+{t:'Reddedilme Gazisi',c:'alayci',d:'Rekor sayıda karşılıksız mesaj bırakanlara.'},
+{t:'Sadece Bakıp Çıkacağım',c:'alayci',d:'Gruba girip hiç konuşmadan çıkanlara.'},
+{t:'Bilet Bakıp İç Çeken',c:'alayci',d:'Sürekli fiyat sorgulayıp hiç bilet almayanlara.'},
+{t:'Yolunu Kaybeden Kaşif',c:'alayci',d:'Navigasyon açıkken bile yanlış sapaktan girenlere.'},
+{t:'Turist Ömer',c:'alayci',d:'Kendi mahallesinde bile haritasız yürüyemeyenlere.'},
+{t:'Yapay Zeka Kölesi',c:'alayci',d:'En basit işi bile AI ye yazdıranlara.'},
+{t:'Bot Terbiyecisi',c:'alayci',d:'AI ya saçma sorular sorup sabrını zorlayanlara.'},
+{t:'Bug Avcısı',c:'alayci',d:'Oyunda haritanın dışına düşüp sıkışanlara.'},
+{t:'Lobi Süsü',c:'alayci',d:'Odaya girip maç başlamadan AFK kalanlara.'},
+{t:'Işıklı Mışıklı',c:'alayci',d:'Profilini GIF ve çerçeveyle pavyona çevirenlere.'},
+{t:'Fakir Avuntusu',c:'alayci',d:'10 liralık hisse alıp kendini Wall Street kurdu sananlara.'},
+{t:'Kuru Sıkı Müşteri',c:'alayci',d:'Pahalı ürünü favorileyip maaş yatınca alacağım diyenlere.'},
+{t:'Batış Sponsoru',c:'alayci',d:'Bu kesin uçar dediği hisse ertesi gün batanlara.'},
+{t:'Görüldü Koleksiyoneri',c:'alayci',d:'Her mesajına görüldü yiyip hala şansını zorlayanlara.'},
+{t:'Yapay Zeka Sevgilisi',c:'alayci',d:'Gerçek insan yerine tüm gün AI botuyla dertleşenlere.'},
+{t:'Ctrl+C Mühendisi',c:'alayci',d:'Tek satır bilmeyip AI ya proje yaptırıp yazılımcıyım diyenlere.'},
+{t:'Yürüyen Ceset',c:'alayci',d:'Oyunda mermi mıknatısı gibi davranıp takıma yük olanlara.'},
+{t:'Yarın Başlıyorumcu',c:'alayci',d:'50 taslak açıp birini bile bitirmeyenlere.'},
+{t:'Hayalperest Yolcu',c:'alayci',d:'Bilet fiyatına bakıp bakıp evde oturanlara.'},
+{t:'Dümdüz Yolda Kaybolan',c:'alayci',d:'Sağa dön derken sola kırıp suçu haritaya atanlara.'},
+{t:'Görgüsüz Zengin',c:'alayci',d:'Profilini sırf hava atmak için en parlak GIF ile dolduranlara.'},
+{t:'İlk Bakışta Kage',c:'romantik',d:'Bir profili ilk kez görüp anında takip eden, ilk mesajı cesurca atanlara.'},
+{t:'Gece 03:00 Düşünen',c:'romantik',d:'Gece 03:00 te hala birini düşünüp profiline bakanlara.'},
+{t:'Kalp Hırsızı',c:'romantik',d:'Bir sohbette kalpleri çalan, herkesin sevdiği kişilere.'},
+{t:'Gizli Hayran',c:'romantik',d:'Söyleyemeyip uzaktan beğeniyle destekleyenlere.'},
+{t:'Mesajı İki Kere Okuyan',c:'romantik',d:'Gelen mesajı iki kere okuyup 10 dakika cevap düşünenlere.'},
+{t:'Uzaktan Seven',c:'duygusal',d:'Uzakta olup da her gün yoklayan, özleyenlere.'},
+{t:'Gölgede Destekçi',c:'duygusal',d:'Kimse görmezken sessizce dest
