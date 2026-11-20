@@ -58,3 +58,39 @@ header{position:sticky;top:0;z-index:20;background:#090909;border-bottom:1px sol
 .tabBtn{background:#111;border:1px solid #232323;color:#888;padding:10px 18px;border-radius:8px;cursor:pointer;white-space:nowrap}
 .tabBtn.active{border-color:#8B0E1A;color:#fff;background:#1a0507}
 .postBox textarea{width:100%;background:#0a0a0a;border:1px solid #232323;border-radius:10px;color:#fff;padding:14px;min-height:70px;outline:none;resize:none}
+/* ROZETLER - Gemini + Kage.YK genişletme */
+.rozet-kutusu{display:flex;flex-wrap:wrap;gap:12px;margin-top:12px}
+.rozet{position:relative;padding:12px 16px;border-radius:12px;font-weight:800;font-size:13px;cursor:pointer;user-select:none;transition:transform .2s;flex:1 1 45%;text-align:center}
+.rozet:active{transform:scale(.96)}
+.rozet::after{content:attr(data-aciklama);position:absolute;bottom:120%;left:50%;transform:translateX(-50%);background:#161b22;color:#e6edf3;border:1px solid #30363d;padding:8px 12px;border-radius:8px;font-size:12px;font-weight:400;width:200px;text-align:center;opacity:0;pointer-events:none;transition:.2s;box-shadow:0 8px 20px rgba(0,0,0,.6);z-index:10}
+.rozet:hover::after,.rozet.showTip::after{opacity:1;bottom:130%}
+
+/* Gemini'den aldık */
+.batis-sponsoru{background:linear-gradient(45deg,#4a0000,#990000);border:2px solid #ff3333;box-shadow:0 0 15px rgba(255,51,51,.5);animation:titreme 2.5s infinite}
+@keyframes titreme{0%,90%,100%{transform:translateX(0)}92%{transform:translateX(-4px) rotate(-2deg)}94%{transform:translateX(4px) rotate(2deg)}96%{transform:translateX(-4px)}98%{transform:translateX(4px)}}
+.gorgusuz-zengin{background:linear-gradient(90deg,#ff007f,#ffcc00,#00ffcc,#ff007f);background-size:300% 300%;color:#000;border:2px solid #fff;animation:gokkusagi 2s linear infinite}
+@keyframes gokkusagi{0%{background-position:0% 50%}100%{background-position:100% 50%}}
+.goruldu-koleksiyoneri{background:#1c2536;border:2px solid #38bdf8;color:#38bdf8;animation:hayalet 3s infinite ease-in-out}
+@keyframes hayalet{0%,100%{opacity:1;transform:translateY(0)}50%{opacity:.35;transform:translateY(-5px)}}
+.ctrlc-muhendisi{background:#0f291e;border:2px solid #00ff66;color:#00ff66;font-family:monospace;animation:glitch 3s infinite}
+@keyframes glitch{0%,95%,100%{transform:skewX(0deg)}96%{transform:skewX(12deg)}98%{transform:skewX(-12deg)}}
+
+/* Yeni eklediklerim - hepsi farklı */
+.yildirimli{background:#0a0a1a;border:2px solid #ffdd00;color:#ffdd00;animation:yildirim 1.8s infinite}
+@keyframes yildirim{0%,60%,100%{box-shadow:0 0 5px #ffdd00}62%{box-shadow:0 0 30px #fff,0 0 50px #ffdd00}64%{box-shadow:0 0 5px #ffdd00}66%{box-shadow:0 0 35px #fff}}
+.yagmurlu{background:#0a1a2a;border:2px solid #38bdf8;color:#bfeaff;animation:yagmur 1.2s infinite}
+@keyframes yagmur{0%{transform:translateY(0)}50%{transform:translateY(3px)}100%{transform:translateY(0)}}
+.alevliRozet{background:linear-gradient(45deg,#2a0505,#8B0E1A);border:2px solid #ff4d00;color:#ffcc00;animation:alevRozet .7s infinite alternate}
+@keyframes alevRozet{from{box-shadow:0 0 8px #ff4d00}to{box-shadow:0 0 22px #ffcc00,0 0 35px #8B0E1A}}
+.suluRozet{background:#062a3a;border:2px solid #2e9bff;color:#bfeaff;animation:suDalga 1.5s infinite alternate}
+@keyframes suDalga{from{transform:scale(1)}to{transform:scale(1.04)}}
+.kalpRozet{background:#1a0507;border:2px solid #ff4d6d;color:#ff8fa3;animation:kalpAtis 1s infinite}
+@keyframes kalpAtis{0%,100%{transform:scale(1)}25%{transform:scale(1.08)}40%{transform:scale(1)}}
+.geceRozet{background:#050510;border:2px solid #8888ff;color:#aaaaff;animation:gece 2s infinite alternate}
+@keyframes gece{from{opacity:.7}to{opacity:1;box-shadow:0 0 18px #8888ff}}
+.sepetRozet{background:#1a1a00;border:2px solid #ffcc00;color:#ffcc00;animation:sepet 1s infinite}
+@keyframes sepet{0%,100%{transform:rotate(0)}50%{transform:rotate(3deg) translateY(-3px)}}
+.tepedenRozet{background:#1a0505;border:2px solid #E32636;color:#fff;animation:dusus 2s infinite}
+@keyframes dusus{0%{transform:translateY(0)}50%{transform:translateY(5px)}100%{transform:translateY(0)}}
+/* Oyun parası hatası için sabitleme */
+#page-game button{transform:none !important}
