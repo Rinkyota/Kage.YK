@@ -66,3 +66,10 @@ function clickCoin(){
   score+=5;
   document.getElementById("score").innerText=score;
 }
+document.addEventListener("click",function(e){
+  if(e.target.classList.contains("rozet")){
+    var all=document.querySelectorAll(".rozet");
+    for(var i=0;i<all.length;i++){all[i].classList.remove("showTip")}
+    e.target.classList.add("showTip");
+  }
+});
