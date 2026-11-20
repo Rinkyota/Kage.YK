@@ -4,262 +4,649 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="theme-color" content="#090909">
-  <meta name="description" content="Kage.YK — üret, geliştir, paylaş ve keşfet.">
-  <title>Kage.YK — Dijital Ekosistem</title>
+  <meta name="description" content="KAGE.YK - Oyun, topluluk ve dijital dünya.">
+  <title>KAGE.YK — Digital Universe</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <header class="topbar">
-    <div class="topbar-left">
-      <button class="icon-button burger" id="menuToggle" aria-label="Menüyü aç" aria-expanded="false">
-        <span></span><span></span><span></span>
-      </button>
-      <a class="brand" href="#" data-page-link="home" aria-label="Kage.YK ana sayfa">Kage<span>.YK</span></a>
+
+<div id="toast" class="toast"></div>
+<div id="overlay" class="overlay"></div>
+
+<!-- MENU -->
+<aside class="sidebar" id="sidebar">
+  <div class="sidebar-header">
+    <a href="#" class="logo" data-page-link="home">
+      <span class="logo-mark">K</span>
+      <span>KAGE<span class="red">.YK</span></span>
+    </a>
+    <button id="menuClose" class="icon-button">✕</button>
+  </div>
+
+  <div class="sidebar-user">
+    <div class="mini-avatar">YK</div>
+    <div>
+      <strong id="sidebarUserName">Gezgin</strong>
+      <small>KAGE ÜYESİ</small>
     </div>
-    <div class="topbar-actions">
-      <label class="top-search">
-        <span aria-hidden="true">⌕</span>
-        <input id="globalSearch" type="search" placeholder="Kage.YK içinde ara..." autocomplete="off">
-      </label>
-      <button class="icon-button language-button" id="languageButton" type="button" title="Dil seçimi">TR</button>
-      <button class="icon-button profile-shortcut" type="button" data-page-link="profile" title="Profil">◉</button>
+  </div>
+
+  <nav class="main-nav">
+    <span class="nav-label">ANA MENÜ</span>
+
+    <button class="nav-item active" data-page="home">⌂ <span>Ana Sayfa</span></button>
+    <button class="nav-item" data-page="global">◎ <span>Global</span></button>
+    <button class="nav-item" data-page="games">▣ <span>Oyunlar</span></button>
+    <button class="nav-item" data-page="shops">◇ <span>Mağaza</span></button>
+    <button class="nav-item" data-page="projects">⌘ <span>Projeler</span></button>
+    <button class="nav-item" data-page="badges">✧ <span>Rozetler</span></button>
+    <button class="nav-item" data-page="analytics">▥ <span>İstatistikler</span></button>
+
+    <span class="nav-label">DİJİTAL DÜNYA</span>
+
+    <button class="nav-item" data-page="premium">♛ <span>Premium</span></button>
+    <button class="nav-item" data-page="points">◈ <span>Kage Points</span></button>
+    <button class="nav-item" data-page="travel">✈ <span>Seyahat</span></button>
+    <button class="nav-item" data-page="markets">⌁ <span>Piyasalar</span></button>
+
+    <span class="nav-label">HESAP</span>
+
+    <button class="nav-item" data-page="profile">◉ <span>Profilim</span></button>
+    <button class="nav-item" data-page="settings">⚙ <span>Ayarlar</span></button>
+  </nav>
+
+  <div class="sidebar-bottom">
+    <div class="sidebar-version">KAGE.YK <span>V1.0</span></div>
+  </div>
+</aside>
+
+<!-- MAIN -->
+<main class="main-content">
+
+  <header class="topbar">
+    <button id="menuToggle" class="icon-button">☰</button>
+
+    <a href="#" class="mobile-logo" data-page-link="home">
+      KAGE<span class="red">.YK</span>
+    </a>
+
+    <div class="topbar-right">
+      <div class="topbar-points">
+        ◈ <span id="topbarPoints">0</span>
+      </div>
+      <button class="topbar-avatar" data-page-link="profile">YK</button>
     </div>
   </header>
 
-  <div class="overlay" id="overlay"></div>
+  <!-- HOME -->
+  <section class="page active" id="page-home">
+    <div class="hero">
+      <div class="hero-content">
+        <span class="eyebrow">WELCOME TO THE DIGITAL UNIVERSE</span>
+        <h1>YOUR WORLD.<br><span class="red">YOUR RULES.</span></h1>
+        <p>Oyunların, toplulukların ve dijital projelerin buluşma noktası.</p>
 
-  <aside class="sidebar" id="sidebar" aria-label="Ana navigasyon">
-    <div class="sidebar-head">
-      <div><strong>Kage<span>.YK</span></strong><small>GÖLGEDEN GÜCE</small></div>
-      <button class="icon-button close-menu" id="menuClose" type="button" aria-label="Menüyü kapat">×</button>
-    </div>
-
-    <div class="nav-label">KEŞFET</div>
-    <button class="nav-item active" data-page="home"><span>⌂</span>Ana Sayfa</button>
-    <button class="nav-item" data-page="global"><span>◎</span>Global Sohbet</button>
-    <button class="nav-item" data-page="games"><span>🎮</span>Oyunlar</button>
-    <button class="nav-item" data-page="shops"><span>▦</span>Kage Shops</button>
-    <button class="nav-item" data-page="projects"><span>◇</span>Projeler</button>
-    <button class="nav-item" data-page="ai"><span>✳</span>Yapay Zekâ</button>
-
-    <div class="nav-label">ARAÇLAR</div>
-    <button class="nav-item" data-page="travel"><span>✈</span>Ulaşım</button>
-    <button class="nav-item" data-page="markets"><span>⌁</span>Borsa</button>
-    <button class="nav-item" data-page="analytics"><span>▥</span>Analiz</button>
-
-    <div class="nav-label">HESABIN</div>
-    <button class="nav-item" data-page="badges"><span>✧</span>Rozetler</button>
-    <button class="nav-item" data-page="points"><span>◈</span>Kage Points</button>
-    <button class="nav-item" data-page="premium"><span>♛</span>Premium</button>
-    <button class="nav-item" data-page="profile"><span>◉</span>Profil</button>
-    <button class="nav-item" data-page="settings"><span>⚙</span>Ayarlar</button>
-
-    <div class="sidebar-bottom">
-      <div class="status-dot"></div>
-      <span>Platform arayüzü hazır</span>
-      <small>API bağlantıları aşamalı kurulacak</small>
-    </div>
-  </aside>
-
-  <main class="main-content">
-    <section class="page active" id="page-home">
-      <div class="announcement"><span class="live-dot"></span><strong>KAGE.YK</strong><span>Yeni dijital ekosistem deneyimi geliştiriliyor.</span></div>
-
-      <section class="hero">
-        <div class="hero-art" aria-hidden="true"><span class="hero-kanji">影</span><span class="hero-ring"></span></div>
-        <div class="hero-content">
-          <p class="eyebrow">KAGE.YK <i>•</i> DIGITAL ECOSYSTEM</p>
-          <h1>FİKRİNİ<br><span>GERÇEĞE</span> DÖNÜŞTÜR.</h1>
-          <p class="hero-copy">Üret. Geliştir. Paylaş. Keşfet. Fikirlerini projelere, projelerini fırsatlara dönüştür.</p>
-          <div class="hero-actions">
-            <button class="primary-button" data-page-link="projects">Projeleri keşfet <span>↗</span></button>
-            <button class="secondary-button" data-page-link="ai">Yapay zekâyı keşfet</button>
-          </div>
+        <div class="hero-actions">
+          <button class="primary-button" data-page-link="games">OYUNLARI KEŞFET</button>
+          <button class="secondary-button" data-page-link="global">GLOBAL'A KATIL</button>
         </div>
-        <div class="hero-footer"><span>01 / DIGITAL ECOSYSTEM</span><span>BUILD SOMETHING REAL</span></div>
+      </div>
+      <div class="hero-decoration">
+        <div class="hero-symbol">K</div>
+      </div>
+    </div>
+
+    <div class="section-heading">
+      <div>
+        <span class="eyebrow">EXPLORE</span>
+        <h2>KAGE DÜNYASI</h2>
+      </div>
+    </div>
+
+    <div class="feature-grid">
+      <article class="feature-card" data-page-link="global">
+        <span class="feature-icon">◎</span>
+        <h3>GLOBAL</h3>
+        <p>Toplulukla iletişim kur.</p>
+        <span class="feature-link">KEŞFET →</span>
+      </article>
+
+      <article class="feature-card" data-page-link="games">
+        <span class="feature-icon">▣</span>
+        <h3>OYUNLAR</h3>
+        <p>Yayınlanan oyunları keşfet.</p>
+        <span class="feature-link">KEŞFET →</span>
+      </article>
+
+      <article class="feature-card" data-page-link="badges">
+        <span class="feature-icon">✧</span>
+        <h3>ROZETLER</h3>
+        <p>Koleksiyonunu oluştur.</p>
+        <span class="feature-link">KEŞFET →</span>
+      </article>
+
+      <article class="feature-card" data-page-link="projects">
+        <span class="feature-icon">⌘</span>
+        <h3>PROJELER</h3>
+        <p>Yeni fikirleri incele.</p>
+        <span class="feature-link">KEŞFET →</span>
+      </article>
+    </div>
+        <div class="dashboard-grid">
+      <section class="panel">
+        <div class="panel-heading">
+          <div>
+            <span class="eyebrow">COMMUNITY</span>
+            <h2>GLOBAL AKIŞ</h2>
+          </div>
+          <button class="text-button" data-page-link="global">TÜMÜNÜ GÖR →</button>
+        </div>
+        <div id="homeGlobalPosts" class="home-global-posts">
+          <div class="empty-state">Henüz paylaşım bulunmuyor.</div>
+        </div>
       </section>
 
-      <div class="section-heading">
-        <div><p class="eyebrow">KAGE.YK PLATFORM</p><h2>Keşfet ve üret</h2></div>
-        <span class="section-note">Bütün araçların tek merkezde.</span>
-      </div>
+      <section class="panel">
+        <div class="panel-heading">
+          <div>
+            <span class="eyebrow">YOUR ACCOUNT</span>
+            <h2>HESAP DURUMU</h2>
+          </div>
+        </div>
 
-      <div class="feature-grid">
-        <article class="feature-card feature-shop">
-          <div class="feature-icon">▦</div><span class="card-kicker">DIGITAL MARKETPLACE</span>
-          <h3>Kage Shops</h3><p>Kendi ürünlerini sergile, mağazanı oluştur ve toplulukla buluştur.</p>
-          <button class="text-link" data-page-link="shops">Mağazaya git <span>↗</span></button>
-        </article>
-        <article class="feature-card feature-ai">
-          <div class="feature-icon">✳</div><span class="card-kicker">AI WORKSPACE</span>
-          <h3>Yapay Zekâ</h3><p>Fikirlerini geliştir, kod üret ve projelerini planla.</p>
-          <button class="text-link" data-page-link="ai">Çalışma alanını aç <span>↗</span></button>
-        </article>
-        <article class="feature-card feature-project">
-          <div class="feature-icon">◇</div><span class="card-kicker">CREATOR NETWORK</span>
-          <h3>Projeler</h3><p>Ürettiklerini sergile, ekip arkadaşı ve gelecekte yatırımcı bul.</p>
-          <button class="text-link" data-page-link="projects">Projeleri incele <span>↗</span></button>
-        </article>
-        <article class="feature-card feature-badge">
-          <div class="feature-icon">✧</div><span class="card-kicker">ACHIEVEMENTS</span>
-          <h3>Rozetler</h3><p>Kişiliğini, başarılarını ve platformdaki yolculuğunu yansıtan rozetler.</p>
-          <button class="text-link" data-page-link="badges">Rozet koleksiyonu <span>↗</span></button>
-        </article>
-      </div>
+        <div class="account-summary">
+          <div class="account-avatar">YK</div>
+          <div>
+            <strong id="homeProfileName">Gezgin</strong>
+            <small>KAGE ÜYESİ</small>
+          </div>
+        </div>
 
-      <div class="split-grid">
-        <article class="wide-card">
-          <div class="wide-card-top"><span class="card-kicker">MARKET WATCH</span><span class="soft-tag">YAKINDA</span></div>
-          <h3>Piyasayı takip et.</h3><p>Hisse senetleri ve kripto varlıklar için fiyat takibi, grafikler ve veri destekli analizler.</p>
-          <button class="secondary-button" data-page-link="markets">Borsa merkezini görüntüle</button>
-        </article>
-        <article class="wide-card travel-card">
-          <div class="wide-card-top"><span class="card-kicker">SMART TRAVEL</span><span class="soft-tag">YAKINDA</span></div>
-          <h3>Yolculuğunu karşılaştır.</h3><p>Uçuş seçeneklerini tek yerde karşılaştır, uygun seçeneği bul.</p>
-          <button class="secondary-button" data-page-link="travel">Ulaşım merkezini aç</button>
-        </article>
-      </div>
-    </section>
+        <div class="account-stat">
+          <span>Kage Points</span>
+          <strong id="homePoints">0 KP</strong>
+        </div>
+        <div class="account-stat">
+          <span>Rozet sayısı</span>
+          <strong id="homeBadgeCount">0</strong>
+        </div>
+        <button class="secondary-button full-button" data-page-link="profile">
+          PROFİLİNE GİT
+        </button>
+      </section>
+    </div>
+  </section>
 
-    <section class="page" id="page-global">
-      <div class="page-heading"><p class="eyebrow">KAGE.YK • COMMUNITY</p><h1>Global <span>sohbet</span></h1><p>Dünyanın farklı yerlerinden insanlarla konuş, fikir paylaş ve topluluklara katıl.</p></div>
-      <div class="global-layout">
-        <aside class="global-channels">
-          <h3>TOPLULUKLAR</h3>
-          <button class="channel-chip active" data-channel="general">🌐 Genel</button>
-          <button class="channel-chip" data-channel="introductions">👋 Tanışma</button>
-          <button class="channel-chip" data-channel="technology">💻 Teknoloji</button>
-          <button class="channel-chip" data-channel="games">🎮 Oyun</button>
-          <button class="channel-chip" data-channel="art">🎨 Sanat</button>
-          <button class="channel-chip" data-channel="anime">⛩ Anime & Manga</button>
-          <button class="channel-chip" data-channel="ideas">💡 Fikirler</button>
-          <button class="channel-chip" data-channel="offtopic">☕ Serbest</button>
-        </aside>
-        <div class="global-feed">
-          <div class="feed-topline"><div><span class="live-dot"></span><b id="channelTitle">Genel sohbet</b><small>Topluluk akışı</small></div><span class="soft-tag">GLOBAL</span></div>
-          <form id="globalPostForm" class="global-compose">
-            <div class="compose-user">影</div>
-            <div class="compose-main"><textarea id="globalPostText" rows="3" maxlength="1200" placeholder="Aklından geçenleri paylaş..."></textarea>
-            <div class="compose-actions"><small>Saygılı ol. Spam ve hakaret yasaktır.</small><button class="primary-button" type="submit">Paylaş ↗</button></div></div>
+  <!-- GLOBAL -->
+  <section class="page" id="page-global">
+    <div class="page-heading">
+      <span class="eyebrow">COMMUNITY NETWORK</span>
+      <h1>GLOBAL <span class="red">ALAN</span></h1>
+      <p>Dünyanın dört bir yanından kullanıcılarla iletişim kur.</p>
+    </div>
+
+    <div class="global-layout">
+      <div class="global-main">
+        <div class="channel-bar">
+          <button class="channel-chip active" data-channel="general">Genel</button>
+          <button class="channel-chip" data-channel="games">Oyun</button>
+          <button class="channel-chip" data-channel="technology">Teknoloji</button>
+          <button class="channel-chip" data-channel="ideas">Fikirler</button>
+          <button class="channel-chip" data-channel="social">Sohbet</button>
+        </div>
+
+        <div class="global-compose">
+          <form id="globalPostForm">
+            <textarea id="globalPostText" maxlength="1000"
+              placeholder="Aklından geçenleri paylaş..."></textarea>
+
+            <div class="compose-footer">
+              <span>En fazla 1000 karakter</span>
+              <button class="primary-button" type="submit">PAYLAŞ →</button>
+            </div>
           </form>
-          <div id="globalPosts" class="global-posts" aria-live="polite"></div>
-          <p class="local-data-note">Bu sürümde gönderiler bu cihazda saklanır. Herkese açık gerçek zamanlı sohbet için sunucu/veritabanı bağlantısı gerekir.</p>
+        </div>
+
+        <div id="globalPosts" class="global-posts">
+          <div class="empty-state">Henüz paylaşım bulunmuyor.</div>
         </div>
       </div>
-    </section>
 
-    <!-- GÜNCELLENDİ: Kullanıcı oyun ekleme formu kaldırıldı. -->
-    <section class="page" id="page-games">
-      <div class="page-heading"><p class="eyebrow">PLAY • DISCOVER • SHARE</p><h1>Oyun <span>merkezi</span></h1><p>Kage.YK bünyesinde yayınlanan oyunları keşfet ve oynamaya başla.</p></div>
-      <div class="section-heading">
-        <div><p class="eyebrow">GAME LIBRARY</p><h2>Yayınlanan oyunlar</h2></div>
-        <span class="section-note">Kage.YK oyun arşivi</span>
-      </div>
-      <div id="gameList" class="game-grid">
-        <article class="game-empty"><div>🎮</div><h3>Oyunlar hazırlanıyor</h3><p>Yayınlanan oyunlar burada listelenecek.</p></article>
-      </div>
-    </section>
-
-    <section class="page" id="page-shops">
-      <div class="page-heading"><p class="eyebrow">DISCOVER • SELL • CREATE</p><h1>Kage <span>Shops</span></h1><p>Kendi mağazanı oluştur. Ürünlerini sergile. Yeni müşterilere ulaş.</p></div>
-      <div class="toolbar">
-        <label class="search-field"><span>⌕</span><input id="shopSearch" type="search" placeholder="Ürün veya mağaza ara..."></label>
-        <button class="primary-button" data-notice="Satıcı paneli, hesap ve mağaza altyapısı bağlandığında açılacak.">Mağaza oluştur <span>＋</span></button>
-      </div>
-      <div class="category-row">
-        <button class="category-chip active" data-category="all">Tümü</button>
-        <button class="category-chip" data-category="digital">Dijital ürünler</button>
-        <button class="category-chip" data-category="fashion">Moda</button>
-        <button class="category-chip" data-category="technology">Teknoloji</button>
-        <button class="category-chip" data-category="art">Sanat & Tasarım</button>
-      </div>
-      <div class="empty-state large-empty"><div class="empty-symbol">▦</div><h3>Mağazalar hazırlanıyor</h3><p>Gerçek satıcılar ve ürünler bağlandığında burada listelenecek. Şimdilik sahte ürün veya fiyat göstermiyoruz.</p></div>
-      <div class="info-strip"><strong>Çok satıcılı pazar yeri</strong><span>Herkes kendi ürününü satabilir. Satış ortaklığı programını yalnızca Kage.YK kurucusu yönetir.</span></div>
-    </section>
-
-    <section class="page" id="page-ai">
-      <div class="page-heading"><p class="eyebrow">AI WORKSPACE</p><h1>Yapay <span>Zekâ</span></h1><p>Fikrini anlat. Planla, üret ve geliştir.</p></div>
-      <div class="ai-workspace">
-        <div class="ai-intro"><div class="ai-orb">✳</div><div><span class="card-kicker">KAGE AI</span><h2>Bir sonraki fikrin ne?</h2><p>Yapay zekâ sohbeti ve proje üretim araçları sunucu/API bağlantısı tamamlandığında burada çalışacak.</p></div></div>
-        <div class="ai-tools">
-          <button class="ai-tool" data-notice="Kod geliştirme aracı, yapay zekâ API bağlantısı eklendiğinde etkinleştirilecek."><span>⌘</span><b>Kod geliştir</b><small>Web, uygulama ve oyun</small></button>
-          <button class="ai-tool" data-notice="Proje üretim aracı sonraki altyapı aşamasında bağlanacak."><span>◇</span><b>Proje oluştur</b><small>Fikirden yol haritasına</small></button>
-          <button class="ai-tool" data-notice="Görsel üretim servisi API bağlantısı gerektirir."><span>▧</span><b>Görsel üret</b><small>Konsept ve tasarım</small></button>
-          <button class="ai-tool" data-notice="Dosya analizi servisi sonraki aşamada eklenecek."><span>⌕</span><b>Dosya analiz et</b><small>İçerik ve hata inceleme</small></button>
+      <aside class="global-sidebar">
+        <div class="panel">
+          <span class="eyebrow">KAGE NETWORK</span>
+          <h3>Topluluk kuralları</h3>
+          <ul class="rules-list">
+            <li>Saygılı iletişim kur.</li>
+            <li>Spam ve taciz yasaktır.</li>
+            <li>Kişisel bilgilerini paylaşma.</li>
+            <li>Topluluk düzenini koru.</li>
+          </ul>
         </div>
-        <div class="ai-compose">
-          <textarea id="aiPrompt" rows="3" placeholder="Ne üretmek veya geliştirmek istiyorsun?"></textarea>
-          <div class="compose-footer"><span>AI servisi henüz bağlanmadı.</span><button class="primary-button" id="aiSend" type="button">Gönder <span>↗</span></button></div>
+
+        <div class="panel">
+          <span class="eyebrow">YOUR IDENTITY</span>
+          <h3>Kullanıcı profilin</h3>
+          <p>Profilini düzenle ve toplulukta kendini tanıt.</p>
+          <button class="secondary-button full-button" data-page-link="profile">
+            PROFİLİ DÜZENLE
+          </button>
+        </div>
+      </aside>
+    </div>
+  </section>
+
+  <!-- GAMES -->
+  <section class="page" id="page-games">
+    <div class="page-heading">
+      <span class="eyebrow">GAME CENTER</span>
+      <h1>OYUN <span class="red">MERKEZİ</span></h1>
+      <p>KAGE.YK bünyesinde yayınlanan oyunlar.</p>
+    </div>
+
+    <div class="game-toolbar">
+      <input id="gameSearch" type="search" placeholder="Oyun ara...">
+      <span class="game-count" id="gameCount">0 OYUN</span>
+    </div>
+
+    <div id="gameList" class="game-grid">
+      <div class="game-empty">
+        <div class="empty-symbol">▣</div>
+        <h3>OYUNLAR HAZIRLANIYOR</h3>
+        <p>Yayınlanan oyunlar burada listelenecek.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- SHOPS -->
+  <section class="page" id="page-shops">
+    <div class="page-heading">
+      <span class="eyebrow">DIGITAL MARKETPLACE</span>
+      <h1>KAGE <span class="red">MAĞAZA</span></h1>
+      <p>Dijital ürünler ve topluluk pazarı.</p>
+    </div>
+
+    <div class="market-tabs">
+      <button class="market-tab active" data-market-tab="all">Tümü</button>
+      <button class="market-tab" data-market-tab="digital">Dijital</button>
+      <button class="market-tab" data-market-tab="physical">Fiziksel</button>
+      <button class="market-tab" data-market-tab="services">Hizmetler</button>
+    </div>
+
+    <div class="market-search">
+      <input id="shopSearch" type="search" placeholder="Ürün veya hizmet ara...">
+    </div>
+
+    <div id="shopList" class="market-grid">
+      <div class="empty-state">Mağaza ürünleri henüz yayınlanmadı.</div>
+    </div>
+  </section>
+
+  <!-- PROJECTS -->
+  <section class="page" id="page-projects">
+    <div class="page-heading">
+      <span class="eyebrow">CREATIVE NETWORK</span>
+      <h1>YK <span class="red">PROJECTS</span></h1>
+      <p>Geliştirilen projeler ve yaratıcı çalışmalar.</p>
+    </div>
+
+    <div id="projectList" class="project-grid">
+      <div class="empty-state">Projeler burada yayınlanacak.</div>
+    </div>
+  </section>
+    <!-- BADGES -->
+  <section class="page" id="page-badges">
+    <div class="page-heading">
+      <span class="eyebrow">ACHIEVEMENT SYSTEM</span>
+      <h1>ROZET <span class="red">KOLEKSİYONU</span></h1>
+      <p>Başarılarını ve sistem tarafından verilen rozetlerini keşfet.</p>
+    </div>
+
+    <div class="badge-overview">
+      <div class="badge-overview-card">
+        <span class="eyebrow">TOPLAM ROZET</span>
+        <strong id="profileBadgeCount">0</strong>
+      </div>
+      <div class="badge-overview-card">
+        <span class="eyebrow">KAGE POINTS</span>
+        <strong id="badgePoints">0 KP</strong>
+      </div>
+    </div>
+
+    <div class="badge-tier-tabs">
+      <button class="active" data-badge-filter="all">TÜMÜ</button>
+      <button data-badge-filter="free">ÜCRETSİZ</button>
+      <button data-badge-filter="premium">PREMIUM</button>
+      <button data-badge-filter="system">SİSTEM ROZETLERİ</button>
+    </div>
+
+    <div id="badgeCatalog" class="badge-grid">
+      <div class="empty-state">Rozetler yükleniyor...</div>
+    </div>
+  </section>
+
+  <!-- ANALYTICS -->
+  <section class="page" id="page-analytics">
+    <div class="page-heading">
+      <span class="eyebrow">ACCOUNT ANALYTICS</span>
+      <h1>HESAP <span class="red">İSTATİSTİKLERİ</span></h1>
+      <p>Kullanıcı hesabına ait genel bilgiler.</p>
+    </div>
+
+    <div class="stats-grid">
+      <div class="stat-card">
+        <span>TOPLAM PAYLAŞIM</span>
+        <strong id="statPosts">0</strong>
+      </div>
+      <div class="stat-card">
+        <span>TOPLAM BEĞENİ</span>
+        <strong id="statLikes">0</strong>
+      </div>
+      <div class="stat-card">
+        <span>ROZETLER</span>
+        <strong id="statBadges">0</strong>
+      </div>
+      <div class="stat-card">
+        <span>KAGE POINTS</span>
+        <strong id="statPoints">0</strong>
+      </div>
+    </div>
+
+    <div class="panel">
+      <span class="eyebrow">ACTIVITY</span>
+      <h2>HESAP HAREKETLERİ</h2>
+      <div id="activityList" class="activity-list">
+        <div class="empty-state">Henüz aktivite bulunmuyor.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PREMIUM -->
+  <section class="page" id="page-premium">
+    <div class="page-heading">
+      <span class="eyebrow">EXCLUSIVE MEMBERSHIP</span>
+      <h1>KAGE <span class="red">PREMIUM</span></h1>
+      <p>KAGE.YK üyelik avantajları.</p>
+    </div>
+
+    <div class="premium-hero">
+      <div class="premium-mark">♛</div>
+      <span class="eyebrow">GO BEYOND THE ORDINARY</span>
+      <h2>YOUR STATUS.<br><span class="red">YOUR IDENTITY.</span></h2>
+      <p>Premium üyelik özellikleri ve ayrıcalıkları.</p>
+    </div>
+
+    <div class="premium-grid">
+      <article class="premium-card">
+        <span>01</span>
+        <h3>ÖZEL ROZETLER</h3>
+        <p>Premium üyeliğe özel rozet koleksiyonu.</p>
+      </article>
+      <article class="premium-card">
+        <span>02</span>
+        <h3>PROFİL ÖZELLEŞTİRME</h3>
+        <p>Özel profil çerçeveleri ve kapak tasarımları.</p>
+      </article>
+      <article class="premium-card">
+        <span>03</span>
+        <h3>ÖZEL AYRICALIKLAR</h3>
+        <p>Premium kullanıcı deneyimi.</p>
+      </article>
+    </div>
+
+    <button class="primary-button" id="premiumSubscribe">PREMIUM BİLGİSİ</button>
+  </section>
+
+  <!-- POINTS -->
+  <section class="page" id="page-points">
+    <div class="page-heading">
+      <span class="eyebrow">DIGITAL CURRENCY</span>
+      <h1>KAGE <span class="red">POINTS</span></h1>
+      <p>KAGE.YK dijital puan sistemi.</p>
+    </div>
+
+    <div class="points-hero">
+      <span class="eyebrow">YOUR BALANCE</span>
+      <strong id="pointsBalance">0</strong>
+      <span>KP — KAGE POINTS</span>
+    </div>
+
+    <div class="panel">
+      <h2>PUAN HAREKETLERİ</h2>
+      <div id="pointsHistory" class="activity-list">
+        <div class="empty-state">Henüz puan hareketi bulunmuyor.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TRAVEL -->
+  <section class="page" id="page-travel">
+    <div class="page-heading">
+      <span class="eyebrow">WORLD EXPLORER</span>
+      <h1>SEYAHAT <span class="red">MERKEZİ</span></h1>
+      <p>Ulaşım ve seyahat bilgilerini keşfet.</p>
+    </div>
+
+    <div class="panel">
+      <h2>UÇUŞ ARA</h2>
+      <form id="flightSearch" class="flight-form">
+        <label>
+          Nereden
+          <input id="flightFrom" type="text" placeholder="Kalkış şehri">
+        </label>
+        <label>
+          Nereye
+          <input id="flightTo" type="text" placeholder="Varış şehri">
+        </label>
+        <label>
+          Tarih
+          <input id="flightDate" type="date">
+        </label>
+        <label>
+          Yolcu sayısı
+          <input id="flightPassengers" type="number" min="1" max="9" value="1">
+        </label>
+        <button class="primary-button" type="submit">UÇUŞ ARA</button>
+      </form>
+      <div id="flightStatus" class="status-message"></div>
+    </div>
+  </section>
+
+  <!-- MARKETS -->
+  <section class="page" id="page-markets">
+    <div class="page-heading">
+      <span class="eyebrow">GLOBAL MARKETS</span>
+      <h1>PİYASALAR <span class="red">MERKEZİ</span></h1>
+      <p>Finansal varlıklar ve piyasa bilgileri.</p>
+    </div>
+
+    <div class="market-tabs">
+      <button class="market-tab active" data-market-tab="crypto">Kripto</button>
+      <button class="market-tab" data-market-tab="stocks">Hisseler</button>
+      <button class="market-tab" data-market-tab="currency">Döviz</button>
+    </div>
+
+    <div class="panel">
+      <div class="market-search">
+        <input id="assetSearch" type="search" placeholder="Varlık ara...">
+      </div>
+      <div id="assetList" class="asset-list">
+        <div class="empty-state">Piyasa verileri henüz bağlanmadı.</div>
+      </div>
+    </div>
+  </section>
+    <!-- PROFILE -->
+  <section class="page" id="page-profile">
+    <div class="page-heading">
+      <span class="eyebrow">YOUR IDENTITY</span>
+      <h1>KULLANICI <span class="red">PROFİLİ</span></h1>
+      <p>Kendi dijital kimliğini oluştur.</p>
+    </div>
+
+    <div class="profile-cover" id="profileCover">
+      <div class="cover-overlay"></div>
+      <span class="cover-label">KAGE MEMBER</span>
+    </div>
+
+    <div class="profile-panel-new">
+      <div class="profile-main">
+        <div class="avatar-frame" id="avatarFrame">
+          <div class="profile-avatar" id="profileAvatar">YK</div>
+        </div>
+
+        <div class="profile-identity">
+          <h2 id="profileNameDisplay">Gezgin</h2>
+          <p id="profileBioDisplay">KAGE.YK üyesi</p>
+          <span class="profile-member-tag">KAGE MEMBER</span>
+        </div>
+
+        <div class="profile-stats">
+          <div><strong id="profilePostCount">0</strong><span>PAYLAŞIM</span></div>
+          <div><strong id="profileLikeCount">0</strong><span>BEĞENİ</span></div>
+          <div><strong id="profilePointsDisplay">0</strong><span>POINTS</span></div>
         </div>
       </div>
-    </section>
 
-    <section class="page" id="page-projects">
-      <div class="page-heading"><p class="eyebrow">CREATE • SHOWCASE • CONNECT</p><h1>Proje <span>alanı</span></h1><p>Projelerini yayınla, gelişimini göster ve doğru insanlarla bağlantı kur.</p></div>
-      <div class="project-actions">
-        <article class="action-panel"><span class="feature-icon">＋</span><h3>Proje yayınla</h3><p>Fikrini, geliştirme aşamanı, görsellerini ve demo bağlantını paylaş.</p><button class="primary-button" data-notice="Proje yayınlama formu, kullanıcı hesabı ve veritabanı bağlandığında açılacak.">Proje oluştur</button></article>
-        <article class="action-panel"><span class="feature-icon">⌘</span><h3>Ekip ve ortak bul</h3><p>Yazılımcı, tasarımcı, üretici veya iş ortağı arayışını paylaş.</p><button class="secondary-button" data-notice="Ekip ve ortak arama sistemi sonraki geliştirme aşamasında açılacak.">İş birliği alanı</button></article>
-        <article class="action-panel"><span class="feature-icon">◇</span><h3>Yatırım fırsatları</h3><p>Projeni yatırımcıların inceleyebileceği bir sunuma dönüştür.</p><button class="secondary-button" data-notice="Yatırımcı eşleştirme ve doğrulama altyapısı henüz kurulmadı.">Yatırım alanı</button></article>
+      <div class="profile-custom-grid">
+        <div class="settings-card">
+          <span class="eyebrow">IDENTITY SETTINGS</span>
+          <h3>PROFİL BİLGİLERİ</h3>
+
+          <label>
+            Kullanıcı adı
+            <input id="profileName" type="text" maxlength="24" placeholder="Kullanıcı adı">
+          </label>
+
+          <label>
+            Hakkımda
+            <textarea id="profileBio" maxlength="180" placeholder="Kendinden bahset..."></textarea>
+          </label>
+
+          <button id="saveProfile" class="primary-button">DEĞİŞİKLİKLERİ KAYDET</button>
+        </div>
+
+        <div class="settings-card cover-settings">
+          <span class="eyebrow">PROFILE CUSTOMIZATION</span>
+          <h3>KAPAK TASARIMI</h3>
+
+          <div class="style-options">
+            <button class="style-option active" data-cover="default">DEFAULT</button>
+            <button class="style-option" data-cover="red">CRIMSON</button>
+            <button class="style-option" data-cover="dark">SHADOW</button>
+            <button class="style-option" data-cover="premium">PREMIUM</button>
+          </div>
+
+          <label>
+            Kapak görseli bağlantısı
+            <input id="coverUrl" type="url" placeholder="https://...">
+          </label>
+
+          <button id="applyCoverUrl" class="secondary-button">KAPAĞI UYGULA</button>
+        </div>
+
+        <div class="settings-card">
+          <span class="eyebrow">AVATAR STYLE</span>
+          <h3>PROFİL ÇERÇEVESİ</h3>
+
+          <div class="style-options">
+            <button class="style-option active" data-frame="default">DEFAULT</button>
+            <button class="style-option" data-frame="red">RED</button>
+            <button class="style-option" data-frame="gold">GOLD</button>
+            <button class="style-option" data-frame="premium">PREMIUM</button>
+          </div>
+        </div>
+
+        <div class="settings-card">
+          <span class="eyebrow">ACHIEVEMENTS</span>
+          <h3>ROZETLERİM</h3>
+          <div id="profileBadges" class="profile-badges">
+            <div class="empty-state">Henüz rozetin bulunmuyor.</div>
+          </div>
+          <button class="secondary-button full-button" data-page-link="badges">
+            ROZET KOLEKSİYONUNA GİT
+          </button>
+        </div>
       </div>
-      <div class="empty-state"><div class="empty-symbol">◇</div><h3>Henüz yayınlanmış proje yok</h3><p>İlk projeler yayınlandığında bu alanda keşfedilebilecek.</p></div>
-    </section>
+    </div>
+  </section>
 
-    <section class="page" id="page-badges">
-      <div class="page-heading"><p class="eyebrow">IDENTITY • ACHIEVEMENTS</p><h1>Rozet <span>koleksiyonu</span></h1><p>Rozetler yalnızca süs değil; davranış, başarı, mizah ve topluluk kültürünün bir parçası.</p></div>
-      <div class="badge-filter-row">
-        <button class="category-chip active" data-badge-filter="all">Tümü</button>
-        <button class="category-chip" data-badge-filter="fun">Mizahi</button>
-        <button class="category-chip" data-badge-filter="romance">Romantik</button>
-        <button class="category-chip" data-badge-filter="warrior">Savaşçı</button>
-        <button class="category-chip" data-badge-filter="creator">Üretici</button>
-        <button class="category-chip" data-badge-filter="social">Sosyal</button>
-        <button class="category-chip" data-badge-filter="mystic">Gizemli</button>
-        <button class="category-chip" data-badge-filter="wealth">Ticaret</button>
-        <button class="category-chip" data-badge-filter="wisdom">Bilgelik</button>
-        <button class="category-chip" data-badge-filter="founder">YK Özel</button>
-        <button class="category-chip" data-badge-filter="premium">Premium</button>
+  <!-- SETTINGS -->
+  <section class="page" id="page-settings">
+    <div class="page-heading">
+      <span class="eyebrow">SYSTEM CONFIGURATION</span>
+      <h1>HESAP <span class="red">AYARLARI</span></h1>
+      <p>KAGE.YK deneyimini kişiselleştir.</p>
+    </div>
+
+    <div class="settings-layout">
+      <div class="settings-card">
+        <span class="eyebrow">LANGUAGE</span>
+        <h3>DİL AYARLARI</h3>
+        <select id="languageSelect">
+          <option value="tr">Türkçe</option>
+          <option value="en">English</option>
+          <option value="ja">日本語</option>
+          <option value="ko">한국어</option>
+          <option value="zh">中文</option>
+          <option value="bg">Български</option>
+          <option value="it">Italiano</option>
+          <option value="ru">Русский</option>
+          <option value="de">Deutsch</option>
+          <option value="es">Español</option>
+        </select>
+        <button id="languageButton" class="secondary-button">DİLİ KAYDET</button>
       </div>
-      <div class="badge-tier-tabs">
-        <button class="category-chip active" data-tier="all">Tüm rozetler</button>
-        <button class="category-chip" data-tier="free">Ücretsiz</button>
-        <button class="category-chip" data-tier="premium">Premium</button>
+
+      <div class="settings-card">
+        <span class="eyebrow">ACCESSIBILITY</span>
+        <h3>GÖRÜNÜM</h3>
+        <label class="setting-toggle">
+          <span>Animasyonları azalt</span>
+          <input id="reduceMotion" type="checkbox">
+        </label>
       </div>
-      <div class="badge-grid" id="badgeCatalog"></div>
-      <div class="info-strip"><strong>Akıllı rozet motoru</strong><span>Rozet uygunluğu sistem kurallarıyla doğrulanacak. Yapay zekâ analiz desteği sağlayacak; kazanılan rozetler animasyonlu bildirimle verilecek.</span></div>
-    </section>
 
-    <section class="page" id="page-analytics">
-      <div class="page-heading"><p class="eyebrow">INSIGHTS</p><h1>Analiz <span>merkezi</span></h1><p>Hesap, içerik, proje ve mağaza performansını tek yerden takip et.</p></div>
-      <div class="feature-grid compact-grid">
-        <article class="feature-card"><span class="card-kicker">PROFILE</span><h3>Profil analizi</h3><p>Görüntülenme ve etkileşim verileri.</p></article>
-        <article class="feature-card"><span class="card-kicker">PROJECTS</span><h3>Proje analizi</h3><p>Proje görüntülenmeleri ve ilgi düzeyi.</p></article>
-        <article class="feature-card"><span class="card-kicker">SHOPS</span><h3>Mağaza analizi</h3><p>Satış, sipariş ve ürün performansı.</p></article>
-        <article class="feature-card"><span class="card-kicker">AI INSIGHTS</span><h3>Akıllı raporlar</h3><p>Veriye dayalı özetler ve eğilimler.</p></article>
+      <div class="settings-card">
+        <span class="eyebrow">ACCOUNT</span>
+        <h3>HESAP BİLGİLERİ</h3>
+        <p>Hesap güvenliği ve üyelik işlemleri.</p>
+        <div class="local-data-note">
+          Bu sürümde hesap bilgileri bu cihazda saklanır. Gerçek hesap sistemi için sunucu bağlantısı gerekir.
+        </div>
       </div>
-      <div class="empty-state"><div class="empty-symbol">▥</div><h3>Analiz için hesap bağlantısı bekleniyor</h3><p>Gerçek kullanıcı verileri bağlandığında kişisel analizler burada gösterilecek.</p></div>
-    </section>
+    </div>
+  </section>
 
-    <section class="page" id="page-premium">
-      <div class="page-heading"><p class="eyebrow">KAGE.YK MEMBERSHIP</p><h1>Kage <span>Premium</span></h1><p>Daha fazla üretim, gelişmiş araçlar ve özel kişiselleştirme seçenekleri.</p></div>
-      <div class="premium-hero"><div class="premium-crown">♛</div><span class="card-kicker">UNLOCK MORE POSSIBILITIES</span><h2>Üretiminin sınırlarını genişlet.</h2><p>Premium; gelişmiş yapay zekâ kullanım hakları, GIF oluşturma, özel animasyonlar ve gelişmiş analiz özellikleri sunacak.</p><button class="primary-button" data-notice="Premium satın alma, ödeme sağlayıcısı ve üyelik sistemi bağlandığında etkinleştirilecek.">Premium planlarını görüntüle <span>↗</span></button></div>
-      <div class="premium-benefits"><div>✳ <b>Gelişmiş AI</b><small>Daha geniş üretim limitleri</small></div><div>▧ <b>Animasyonlu GIF</b><small>Oluştur ve paylaş</small></div><div>✧ <b>Özel rozetler</b><small>Satın al, kazan veya hediye et</small></div><div>▥ <b>Gelişmiş analiz</b><small>Daha detaylı raporlar</small></div></div>
-    </section>
+  <!-- AI ASSISTANT -->
+  <section class="page" id="page-assistant">
+    <div class="page-heading">
+      <span class="eyebrow">KAGE INTELLIGENCE</span>
+      <h1>YK <span class="red">ASSISTANT</span></h1>
+      <p>Dijital asistan alanı.</p>
+    </div>
 
-    <section class="page" id="page-points">
-      <div class="page-heading"><p class="eyebrow">DIGITAL CREDITS</p><h1>Kage <span>Points</span></h1><p>Platform içindeki alışveriş ve özelliklerde kullanılacak dijital kredi sistemi.</p></div>
-      <div class="points-panel"><div><span class="card-kicker">HESAP BAKİYESİ</span><h2>— <small>Kage Points</small></h2><p>Gerçek bakiye, hesap ve işlem altyapısı bağlandığında gösterilecek.</p></div><div class="points-symbol">◈</div></div>
-      <div class="feature-grid compact-grid"><article class="feature-card"><h3>Points satın al</h3><p>Güvenli ödeme altyapısıyla bakiye yükle.</p><button class="secondary-button" data-notice="Puan satın alma, ödeme sağlayıcısı bağlandığında açılacak.">Satın alma seçenekleri</button></article><article class="feature-card"><h3>İşlem geçmişi</h3><p>Yükleme, harcama, hediye ve iade kayıtları.</p><button class="secondary-button" data-notice="İşlem geçmişi kullanıcı veritabanı bağlandığında görüntülenecek.">Geçmişi görüntüle</button></article></div>
-    </section>
-
-    <section class="page" id="page-travel">
-      <div class="page-heading"><p class="eyebrow">SMART TRAVEL</p><h1>Ulaşım <span>merkezi</span></h1><p>Uçuşları karşılaştır, yolculuğunu planla ve seçenekleri incele.</p></div>
-      <div class="search-panel">
-        <div class="form-grid"><label>Nereden<input type="text" placeholder="Kalkış şehri" id="flightFrom"></label><label>Nereye<input type="text" placeholder="Varış şehri" id="flightTo"></label><label>Gidiş tarihi<input type="date" id="flightDate"></label><label>Yolcu<input type="number" min="1" max="9" value="1" id="flightPassengers"></label></div>
-        <button class="primary-button" id="flightSearch">Uçuşları karşılaştır <span>↗</span></button>
-        <p class="form-note" id="flightStatus">Canlı uçuş ve fiyat verisi için uçuş arama sağlayıcısı API bağlantısı gereklidir.</p>
+    <div class="panel assistant-panel">
+      <div id="assistantMessages" class="assistant-messages">
+        <div class="assistant-message">
+          KAGE.YK asistan alanına hoş geldin. Henüz yapay zekâ API bağlantısı kurulmadı.
+        </div>
       </div>
-      <div class="empty-state"><div class="empty-symbol">✈</div><h3>Uçuş karşılaştırma altyapısı bekleniyor</h3><p>API bağlandığında fiyatlar, havayolları, aktarma ve bagaj bilgileri listelenecek.</p></div>
-    </section>
 
-    <section class="page" id="page-markets">
- 
+      <form id="aiSend" class="assistant-compose">
+        <input id="aiPrompt" type="text" placeholder="Mesajını yaz...">
+        <button class="primary-button" type="submit">GÖNDER</button>
+      </form>
+    </div>
+  </section>
+
+  <footer class="site-footer">
+    <div class="footer-logo">KAGE<span class="red">.YK</span></div>
+    <p>YOUR WORLD. YOUR RULES.</p>
+    <span>© 2026 KAGE.YK — ALL RIGHTS RESERVED</span>
+  </footer>
+
+</main>
+
+<script src="app.js"></script>
+</body>
+</html>
