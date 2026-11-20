@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kage.YK</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:Arial,sans-serif}
+body{background:#090909;color:#fff;overflow-x:hidden}
+header{position:sticky;top:0;z-index:10;background:#0f0f0f;border-bottom:2px solid #E32636;padding:12px 16px;display:flex;justify-content:space-between;align-items:center}
+.logo{font-size:24px;font-weight:900;letter-spacing:1px}.logo span{color:#E32636}
+nav{display:flex;gap:8px;overflow-x:auto;white-space:nowrap;padding:10px 16px;background:#111}
+nav button{background:#1c1c1c;color:#ccc;border:1px solid #333;padding:8px 12px;border-radius:20px;cursor:pointer}
+nav button.active{background:#E32636;color:#fff;border-color:#E32636}
+.hero{padding:28px 16px;text-align:center}
+.hero h1{font-size:34px;line-height:1.2}.hero h1 span{color:#E32636}
+.hero p{color:#aaa;margin-top:10px}
+.card{background:#141414;border:1px solid #2a2a2a;border-radius:16px;padding:16px;margin:14px 16px}
+.btn{background:#E32636;color:#fff;border:none;padding:12px 16px;border-radius:12px;font-weight:700;cursor:pointer;width:100%;margin-top:10px}
+.btn2{background:#222;color:#fff;border:1px solid #444;padding:10px;border-radius:10px;cursor:pointer}
+.row{display:flex;gap:8px;margin-top:10px}.row button{flex:1}
+.profile{display:flex;gap:14px;align-items:center}
+.avatar{width:84px;height:84px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:34px;background:#222;flex-shrink:0}
+.frame-alev{border:4px solid #ff4d00;box-shadow:0 0 20px #ff4d00,0 0 40px #E32636;animation:alev 0.8s infinite alternate}
+@keyframes alev{from{box-shadow:0 0 12px #ff4d00}to{box-shadow:0 0 30px #ffcc00,0 0 45px #E32636}}
+.frame-yildirim{border:4px solid #00d4ff;box-shadow:0 0 20px #00d4ff;animation:yildirim 0.5s infinite alternate}
+@keyframes yildirim{from{box-shadow:0 0 8px #00d4ff}to{box-shadow:0 0 28px #fff,0 0 35px #00d4ff}}
+.frame-su{border:4px solid #2e9bff;box-shadow:0 0 18px #2e9bff;animation:su 1.2s infinite alternate}
+@keyframes su{from{transform:scale(1)}to{transform:scale(1.05)}}
+.game-box{text-align:center}
+#score{font-size:42px;color:#E32636;font-weight:900}
+.coin{width:110px;height:110px;border-radius:50%;background:radial-gradient(circle,#ff5a6a,#E32636);font-size:44px;border:none;cursor:pointer;margin:14px auto;display:block;box-shadow:0 0 25px #E32636}
+#bgCanvas{position:fixed;inset:0;z-index:-1;opacity:0.7}
+.badge{display:inline-block;background:#222;border:1px solid #E32636;padding:6px 10px;border-radius:20px;font-size:12px;margin:4px 4px 0 0}
+small{color:#888}
+</style>
+</head>
+<body>
+<canvas id="bgCanvas"></canvas>
+<header><div class="logo">Kage<span>.YK</span></div><button class="btn2" onclick="toggleBg()" id="bgBtn">Animasyon: Açık</button></header>
+<nav id="menu">
+<button class="active" onclick="go('home',this)">Ana Sayfa</button><button onclick="go('shops',this)">Kage Shops</button><button onclick="go('game',this)">Oyun</button><button onclick="go('profile',this)">Profil</button><button onclick="go('badges',this)">Rozetler</button><button onclick="go('premium',this)">Premium</button>
+</nav>
+
+<div class="hero" id="home">
+<h1>Dijital Ekosisteme<br><span>Hoş Geldin.</span></h1>
+<p>Üret, sat, oyna, rozet kazan. Hepsi tek yerde.</p>
+<div class="row"><button class="btn2" onclick="go('shops',null)">Mağazaya Git</button><button class="btn2" onclick="go('game',null)">Oyuna Git</button></div>
+</div>
+
+<div class="card" id="profile">
+<h3>Profilim</h3><br>
+<div class="profile">
+<div class="avatar frame-alev" id="avatar">🦊</div>
+<div><b>Rinkyota</b><br><small>@rinkyota • Kage.YK Kurucusu</small><br><span class="badge">🔥 Kurucu</span><span class="badge">⚡ KAGE</span></div>
+</div>
+<p style="margin-top:12px">Profil Çerçevesi Seç:</p>
+<div class="row">
+<button class="btn2" onclick="setFrame('frame-alev')">🔥 Alevli</button>
+<button class="btn2" onclick="setFrame('frame-yildirim')">⚡ Yıldırımlı</button>
+<button class="btn2" onclick="setFrame('frame-su')">💧 Sulu</button>
+</div>
+<button class="btn" onclick="alert('Profil düzenleme 2. adımda gelecek')">Profili Düzenle</button>
+</div>
+
+<div class="card" id="game">
+<h3>🎮 Kage Oyunu - 2D</h3>
+<p><small>30 saniyede ne kadar toplayabilirsin? Tıkla, puan kazan.</small></p>
+<div class="game-box">
+<div id="score">0</div>
+<div><small>Skor • En İyi: <span id="best">0</span> • Süre: <span id="time">30</span></small></div>
+<button class="coin" onclick="clickCoin()">🪙</button>
+<button class="btn2" onclick="startGame()">Oyunu Başlat</button>
+</div>
+</div>
+
+<div class="card" id="shops">
+<h3>🛍️ Kage Shops</h3>
+<p><small>Çok yakında herkes kendi mağazasını açacak.</small></p>
+<div class="row"><button class="btn2">🔥 Alevli Rozet - 50 Puan</button><button class="btn2">💧 Sulu Çerçeve - 30 Puan</button></div>
+<button class="btn" onclick="alert('Mağaza sistemi 2. aşamada açılacak, şimdilik tanıtım')">Mağazayı İncele</button>
+</div>
+
+<div class="card" id="badges">
+<h3>🏅 Rozetler</h3>
+<span class="badge">🔥 Kurucu</span><span class="badge">⚡ KAGE</span><span class="badge">💖 Romantik</span><span class="badge">⚔️ Savaşçı</span><span class="badge">😂 Mizahi</span><span class="badge">👑 Premium</span>
+<p style="margin-top:10px"><small>33 sınırı yok. Sınırsız rozet gelecek.</small></p>
+</div>
+
+<div class="card" id="premium">
+<h3>👑 Premium</h3>
+<p><small>GIF oluşturma, özel efektler, gelişmiş analiz.</small></p>
+<button class="btn" onclick="alert('Premium ödeme sistemi 2. aşamada bağlanacak')">Premium'u İncele</button>
+</div>
+
+<script>
+let bgOn=true;
+const c=document.getElementById('bgCanvas');const ctx=c.getContext('2d');
+function resize(){c.width=innerWidth;c.height=innerHeight}resize();addEventListener('resize',resize);
+let parts=Array.from({length:60},()=>({x:Math.random()*innerWidth,y:Math.random()*innerHeight,s:Math.random()*2+1,v:Math.random()*0.6+0.2}));
+function draw(){ctx.clearRect(0,0,c.width,c.height);if(!bgOn)return;ctx.fillStyle='#E32636';parts.forEach(p=>{p.y-=p.v;if(p.y<0)p.y=innerHeight;ctx.beginPath();ctx.arc(p.x,p.y,p.s,0,Math.PI*2);ctx.fill()});requestAnimationFrame(draw)}draw();
+function toggleBg(){bgOn=!bgOn;document.getElementById('bgBtn').innerText=bgOn?'Animasyon: Açık':'Animasyon: Kapalı';if(bgOn)draw();else ctx.clearRect(0,0,c.width,c.height)}
+function setFrame(cls){document.getElementById('avatar').className='avatar '+cls}
+function go(id,el){document.getElementById(id).scrollIntoView({behavior:'smooth'});if(el){document.querySelectorAll('nav button').forEach(b=>b.classList.remove('active'));el.classList.add('active')}}
+let score=0,best=localStorage.getItem('kageBest')||0,timer=null,timeLeft=30,playing=false;
+document.getElementById('best').innerText=best;
+function startGame(){score=0;timeLeft=30;playing=true;document.getElementById('score').innerText=0;clearInterval(timer);timer=setInterval(()=>{timeLeft--;document.getElementById('time').innerText=timeLeft;if(timeLeft<=0){clearInterval(timer);playing=false;if(score>best){best=score;localStorage.setItem('kageBest',best);document.getElementById('best').innerText=best}alert('Süre bitti! Skorun: '+score)}},1000)}
+function clickCoin(){if(!playing){alert('Önce Oyunu Başlat but
